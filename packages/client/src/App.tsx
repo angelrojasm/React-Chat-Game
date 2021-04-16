@@ -1,42 +1,22 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import ChatHub from "./pages/ChatHub";
+import Chatroom from "./pages/Chatroom";
 
 const App = (): JSX.Element => {
-  const [data, setData] = useState();
-  const [socket, setSocket] = useState(null || socketIOClient);
-
-  useEffect(() => {
-    if (socket === null) {
-      const client = socketIOClient("/");
-      setSocket(client);
-    }
-    socket.on("date", (response: any) => {
-      setData(response);
-    });
-    socket.on("alert-message", (response: any) => {
-      window.alert(response);
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
-
-  function getHello() {
-    socket.emit("button-message");
-  }
   return (
-    <div>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          getHello();
-        }}
-      >
-        Click me
-      </button>
-      {data && <h3>{data}</h3>}
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={ChatHub} />
+        <Route path="/chat" exact component={Chatroom} />
+        <Redirect to={"/"} />
+      </Switch>
+    </Router>
   );
 };
 
