@@ -1,0 +1,23 @@
+{
+  "name": "react-chat-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/angelrojasm/react-chat-game.git",
+  "author": "angelrojasm <angelrojasm6@gmail.com>",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  },
+  "scripts": {
+    "dev:client": "yarn workspace @react-chat-game/client start",
+    "build:client": "yarn workspace @react-chat-game/client build",
+    "dev:server": "yarn workspace @react-chat-game/server dev",
+    "start:server": "yarn workspace @react-chat-game/server start",
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
+    "start": "yarn build:client && yarn start:server"
+  }
+}
