@@ -8,17 +8,19 @@ const server = http.createServer(app);
 
 const io = socketIo(server);
 const port = process.env.PORT || 3001;
-var interval;
+var userList = {};
 
 io.on("connection", (socket) => {
   console.log("New client connected");
-  if (interval) {
-    clearInterval(interval);
-  }
-  interval = setInterval(() => getDate(socket), 1000);
+  socket.emit("username-request");
+
+  socket.on("username-response", (response) => {
+    userList[socket.handshake.issued] = response;
+    socket.emit("user-list", userList);
+  });
   socket.on("disconnect", () => {
+    delete userList[socket.handshake.issued];
     console.log("Client disconnected");
-    clearInterval(interval);
   });
 
   socket.on("button-message", () => {
