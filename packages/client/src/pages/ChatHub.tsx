@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 const ChatHub = (): JSX.Element => {
   const history = useHistory();
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
 
   return (
     <div className="h-screen w-screen bg-purple-200 flex flex-col items-center justify-center">
@@ -24,16 +24,16 @@ const ChatHub = (): JSX.Element => {
           type="text"
           className="focus:outline-none leading-2 h-12 rounded p-1"
           placeholder="What's Your name?"
-          value={userName}
+          value={username}
           onChange={(e) => {
-            setUserName(e.target.value);
+            setUsername(e.target.value);
           }}
         />
         <button
           className="bg-purple-600 hover:bg-purple-500 focus:outline-none focus: ring-1 focus:ring-purple-600 rounded-md p-3 text-white font-medium w-32 sm:inline-block ml-2"
           onClick={(e) => {
             e.preventDefault();
-            history.push("/chat", { userName: userName });
+            history.push("/chat", { username: username });
           }}
         >
           Join the Chat
