@@ -6,6 +6,7 @@ const ChatHub = (): JSX.Element => {
   const history = useHistory();
   const [username, setUsername] = useState("");
 
+  const verifyName = () => {};
   return (
     <div className="h-screen w-screen bg-purple-200 flex flex-col items-center justify-center">
       <h3 className="font-normal text-4xl leading-4 font-sans mt-9 mr-6">
@@ -33,6 +34,7 @@ const ChatHub = (): JSX.Element => {
           className="bg-purple-600 hover:bg-purple-500 focus:outline-none focus: ring-1 focus:ring-purple-600 rounded-md p-3 text-white font-medium w-32 sm:inline-block ml-2"
           onClick={(e) => {
             e.preventDefault();
+            verifyName();
             history.push("/chat", { username: username });
           }}
         >

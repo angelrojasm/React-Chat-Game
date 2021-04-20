@@ -2,8 +2,9 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import socketIOClient from "socket.io-client";
-import ChatMessage from "../components/ChatMessage";
+import ChatMessageInput from "../components/ChatMessageInput";
 import UserList from "../components/UserList";
+import ChatList from "../components/ChatList";
 
 type AppProps = {
   location: {
@@ -50,9 +51,10 @@ const Chatroom = ({ location }: AppProps): JSX.Element => {
         </div>
         <div className="absolute top-0 right-0 w-4/5 h-5/6 ">
           {/** Insert ChatList Component here */}
+          <ChatList socket={socket} />
         </div>
         <div className="absolute bottom-0 right-0 w-4/5 h-1/6 border-t border-gray-400 flex items-center">
-          <ChatMessage socket={socket} />
+          <ChatMessageInput socket={socket} />
         </div>
       </div>
     </div>

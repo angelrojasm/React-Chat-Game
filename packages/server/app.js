@@ -9,6 +9,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 const port = process.env.PORT || 3001;
 var userList = {};
+var messageList = [];
 
 io.on("connection", (socket) => {
   console.log("New client connected");
@@ -26,6 +27,11 @@ io.on("connection", (socket) => {
   socket.on("button-message", () => {
     console.log("recieved");
     socket.emit("alert-message", "hello from server");
+  });
+
+  socket.on("new-message", (message) => {
+    messageList.push([userList[socket.handshake.issued], message]);
+    socket.emit("message-list", messageList);
   });
 });
 

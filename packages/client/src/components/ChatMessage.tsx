@@ -1,37 +1,16 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import SendIcon from "@material-ui/icons/Send";
 
 const ChatMessage = ({ socket }: any): JSX.Element => {
-  const [message, setMessage] = useState<string>("");
-
-  function sendMessage() {
-    socket.emit("new-message", message);
-    setMessage("");
-  }
-
   return (
-    <div className="w-full flex justify-center">
-      <input
-        value={message}
-        onChange={(e) => {
-          setMessage(e.target.value);
-        }}
-        type="text"
-        placeholder="Say something in the chat!"
-        className="bg-gray-200 rounded-sm text-black h-16 pl-4 w-3/4 focus:outline-none focus:ring-1 focus:ring-gray-500 "
-      />
-      <button
-        type="submit"
-        onClick={(e) => {
-          e.preventDefault();
-          sendMessage();
-        }}
-        className="rounded-lg h-16 w-16 p-0 focus:outline-none focus:ring-1 focus:ring-green-600"
-        style={{ backgroundColor: "#28a745" }}
-      >
-        <SendIcon className="text-white" />
-      </button>
+    <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+      <div className="flex-shrink-0">
+        <img className="h-12 w-12" src="/img/logo.svg" alt="ChitChat Logo" />
+      </div>
+      <div>
+        <div className="text-xl font-medium text-black">ChitChat</div>
+        <p className="text-gray-500">You have a new message!</p>
+      </div>
     </div>
   );
 };
