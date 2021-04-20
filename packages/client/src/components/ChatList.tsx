@@ -20,14 +20,26 @@ const ChatList = ({ socket, username }: AppProps): JSX.Element => {
   function generateMessages(): any {
     return messageList?.map((message: [string, string], key: any) => {
       return message[0] === username ? (
-        <ChatMessage ownMessage user={message[0]} message={message[1]} />
+        <div className="w-full flex justify-end">
+          <div className="mr-4">
+            <ChatMessage className="" user={message[0]} message={message[1]} />
+          </div>
+        </div>
       ) : (
-        <ChatMessage user={message[0]} message={message[1]} />
+        <div className="w-full flex justify-start">
+          <div className="mr-4">
+            <ChatMessage
+              className="ml-2"
+              user={message[0]}
+              message={message[1]}
+            />
+          </div>
+        </div>
       );
     });
   }
   return (
-    <div className="w-full h-full border border-black mx-auto overflow-auto flex flex-col justify-start items-center">
+    <div className="w-full h-full mx-auto overflow-auto flex flex-col justify-start items-center">
       {generateMessages()}
     </div>
   );
