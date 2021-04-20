@@ -22,17 +22,13 @@ const ChatList = ({ socket, username }: AppProps): JSX.Element => {
       return message[0] === username ? (
         <div className="w-full flex justify-end">
           <div className="mr-4">
-            <ChatMessage className="" user={message[0]} message={message[1]} />
+            <ChatMessage ownMessage message={message[1]} />
           </div>
         </div>
       ) : (
         <div className="w-full flex justify-start">
-          <div className="mr-4">
-            <ChatMessage
-              className="ml-2"
-              user={message[0]}
-              message={message[1]}
-            />
+          <div className="ml-4">
+            <ChatMessage user={message[0]} message={message[1]} />
           </div>
         </div>
       );
