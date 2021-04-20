@@ -11,6 +11,10 @@ const port = process.env.PORT || 3001;
 var userList = {};
 var messageList = [];
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+}
+
 io.on("connection", (socket) => {
   console.log("New client connected");
   socket.emit("username-request");
