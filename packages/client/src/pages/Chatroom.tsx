@@ -46,7 +46,7 @@ const Chatroom = ({ location }: AppProps): JSX.Element => {
   return location.state ? (
     <div className="h-screen w-screen bg-purple-200 flex justify-center items-center flex-col">
       <h2 className="font-normal text-4xl leading-4 font-sans">Chatroom</h2>
-      <div className="bg-white w-3/5 h-3/4 border-gray-300 border rounded my-8 relative shadow m-0 p-0">
+      <div className="bg-white w-11/12 md:w-4/5 lg:w-3/5 h-3/4 border-gray-300 border rounded my-8 relative shadow m-0 p-0">
         <div className="border-gray-400 border-r h-full absolute bottom-0 left-0 w-1/5 m-0 p-0">
           {/** Insert UserList Component here */}
           <UserList data={userList} />

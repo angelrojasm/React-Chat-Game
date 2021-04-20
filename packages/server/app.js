@@ -19,7 +19,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
 });
 io.on("connection", (socket) => {
-  console.log("New client connected");
   socket.emit("username-request");
   socket.join("game-room");
 
@@ -29,7 +28,6 @@ io.on("connection", (socket) => {
   });
   socket.on("disconnect", () => {
     delete userList[socket.handshake.issued];
-    console.log("Client disconnected");
     io.to("game-room").emit("user-list", userList);
     if (Object.keys(userList).length === 0) {
       messageList.length = 0;

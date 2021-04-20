@@ -26,11 +26,11 @@ const ChatMessageInput = ({ socket }: any): JSX.Element => {
           }}
           type="text"
           placeholder="Say something in the chat!"
-          className="bg-gray-200 rounded-sm text-black h-16 pl-4 w-3/4 focus:outline-none focus:ring-1 focus:ring-gray-300 "
+          className="bg-gray-200 rounded-sm text-black h-12 sm:h-16 pl-1 ml-1 sm:ml-0 sm:pl-4 w-2/3 sm:w-3/4 text-xs sm:text-sm mr-1 sm:mr-0 sm:text-base focus:outline-none focus:ring-1 focus:ring-gray-300 "
         />
         <button
           type="submit"
-          className="rounded-lg h-16 w-16 p-0 focus:outline-none focus:ring-1 focus:ring-green-600"
+          className="rounded-lg w-8 sm:w-16 sm:h-16 w-12 p-0 focus:outline-none focus:ring-1 focus:ring-green-600"
           style={{ backgroundColor: "#28a745" }}
         >
           <SendIcon className="text-white" />
