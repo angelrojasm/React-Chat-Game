@@ -22,6 +22,9 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     delete userList[socket.handshake.issued];
     console.log("Client disconnected");
+    if (Object.keys(userList).length === 0) {
+      messageList.length = 0;
+    }
   });
 
   socket.on("button-message", () => {

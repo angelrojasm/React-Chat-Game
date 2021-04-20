@@ -12,26 +12,30 @@ const ChatMessageInput = ({ socket }: any): JSX.Element => {
 
   return (
     <div className="w-full flex justify-center">
-      <input
-        value={message}
-        onChange={(e) => {
-          setMessage(e.target.value);
-        }}
-        type="text"
-        placeholder="Say something in the chat!"
-        className="bg-gray-200 rounded-sm text-black h-16 pl-4 w-3/4 focus:outline-none focus:ring-1 focus:ring-gray-300 "
-      />
-      <button
-        type="submit"
-        onClick={(e) => {
+      <form
+        className="w-full mx-auto flex justify-center"
+        onSubmit={(e) => {
           e.preventDefault();
           sendMessage();
         }}
-        className="rounded-lg h-16 w-16 p-0 focus:outline-none focus:ring-1 focus:ring-green-600"
-        style={{ backgroundColor: "#28a745" }}
       >
-        <SendIcon className="text-white" />
-      </button>
+        <input
+          value={message}
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+          type="text"
+          placeholder="Say something in the chat!"
+          className="bg-gray-200 rounded-sm text-black h-16 pl-4 w-3/4 focus:outline-none focus:ring-1 focus:ring-gray-300 "
+        />
+        <button
+          type="submit"
+          className="rounded-lg h-16 w-16 p-0 focus:outline-none focus:ring-1 focus:ring-green-600"
+          style={{ backgroundColor: "#28a745" }}
+        >
+          <SendIcon className="text-white" />
+        </button>
+      </form>
     </div>
   );
 };

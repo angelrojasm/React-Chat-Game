@@ -21,7 +21,9 @@ type AppProps = {
 const Chatroom = ({ location }: AppProps): JSX.Element => {
   const [socket, setSocket] = useState(null || socketIOClient);
   const [userList, setUserList] = useState<[string, any][]>([]);
-
+  const [username, setUsername] = useState<string>(
+    location.state ? location.state.username : ""
+  );
   useEffect(() => {
     if (socket === null) {
       const client = socketIOClient("/");
@@ -51,7 +53,7 @@ const Chatroom = ({ location }: AppProps): JSX.Element => {
         </div>
         <div className="absolute top-0 right-0 w-4/5 h-5/6 ">
           {/** Insert ChatList Component here */}
-          <ChatList socket={socket} />
+          <ChatList socket={socket} username={username} />
         </div>
         <div className="absolute bottom-0 right-0 w-4/5 h-1/6 border-t border-gray-400 flex items-center">
           <ChatMessageInput socket={socket} />
