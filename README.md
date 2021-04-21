@@ -4,7 +4,7 @@ This is a **very** simple chat application utilizing socket.io in a node.js + ex
 
 This application is a Proof of Concept on how to utilize sockets on an HTTP Server to communicate multiple react clients in real time. The Client application is also my first experience using React + Typescript and using Utility Classes with TailwindCSS to style my components without any css/scss files.
 
-You can find the deployed version here: http://react-chat-app.herokuapp.com
+You can find the deployed version here: http://react-chat-game.herokuapp.com
 
 ## Getting started
 
