@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SocketIOClient from "socket.io-client";
 import ChatMessage from "./ChatMessage";
 
@@ -10,7 +10,7 @@ type AppProps = {
 
 const ChatList = ({ socket, username }: AppProps): JSX.Element => {
   const [messageList, setMessageList] = useState<[string, string][]>();
-
+  const scrollableRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     socket.on("message-list", (messages: [string, string][]) => {
       setMessageList(messages);
@@ -19,6 +19,13 @@ const ChatList = ({ socket, username }: AppProps): JSX.Element => {
 
   function generateMessages(): any {
     return messageList?.map((message: [string, string], key: any) => {
+      if (message[0] === username && key === messageList.length) {
+        if (scrollableRef.current !== null) {
+          scrollableRef.current.scrollTop =
+            scrollableRef.current.scrollHeight -
+            scrollableRef.current.clientHeight;
+        }
+      }
       return message[0] === username ? (
         <div className="w-full flex justify-end" key={key}>
           <div className="mr-4">
@@ -35,7 +42,11 @@ const ChatList = ({ socket, username }: AppProps): JSX.Element => {
     });
   }
   return (
-    <div className="w-full h-full mx-auto overflow-auto flex flex-col justify-start items-center">
+    <div
+      id="scrollable"
+      ref={scrollableRef}
+      className="w-full h-full mx-auto overflow-auto flex flex-col justify-start items-center"
+    >
       {generateMessages()}
     </div>
   );
